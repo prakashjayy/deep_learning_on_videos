@@ -5,7 +5,7 @@ I and two of my collegues **Sachin Chandra** and **Vikash Challa** have been wor
 - Business Aspect: Why we need Video Analytics?
 - Datasets: Openly Available datasets and pitfalls surrounding it. Things we need to consider for annotating our own datasets.
 - Buidling data pipelines for Automatic annotation.
-- Reasearch papers: Different techiques used for Action Classification
+- Reasearch papers we followed: Different techiques used for Action Classification
     - C3D networks
     - Spatio-Temporal Neworks (RGB+ C3D FLOW)
     - Kinetics-i3d network (C3D RGB+ C3D FLOW)
@@ -24,6 +24,7 @@ When we are given some grant to work on Video Analytics space, We have taken it 
     - How comfartable are they using it ? etc
 - A retail space in your city might want to see if there is any suspicious activity inside their zone?
 - Survillence systems monitoring people
+- Extract videos from search.
 
 ## Datasets:
 The following datasets are freely available
@@ -38,7 +39,7 @@ The following datasets are freely available
 All the video datasets are trimmed (10 secs) and labelled accordingly. Each one of them follow their own annotation techinque. But we want to raise some concerns when you are gathering data (Video specifically) for your own task.
 
 - Each class should have unique videos (collected across different backgrounds and people). Redundancy is a alarming problem in the video analytics space.
-  - Collecting two video chucks from the same household is a common mistake most people make. This is highly redundant as both the videos are moslty same.
+  - Collecting two video chucks from the same household(same background) is a common mistake most people make. This is highly redundant as both the videos are moslty same.
   - Also collect videos with unique backgrounds (Indoor and outdoor, night light vs day light etc).
 
 
@@ -98,8 +99,9 @@ This worked well for them and improved the accuracy.
 
 ### TSN
 - Generate RGB, Flow_x and Flow_y for the video (10 sec).
-- Select 25 images (RGB- time dependent) and 25 flow (flow_x+flow_y, time dependent) and pass through the segmentor network (bninception in parallel and different for both rgb and flow).
-- 98% accuracy on UCF-101 model and 76% accuracy on Kinetics dataset. Top-5 accuracy is standing at 92%
+- Segment video into snippets. Each snippet produces a prelimanary prediction. Then a consensus amo  ng the snippets will be derived as the video-level prediction
+- Select 25 images (RGB- time dependent) and 25 flow (flow_x+flow_y, time dependent) and pass throu  gh the segmentor network (bninception in parallel and different for both rgb and flow).
+- 98% accuracy on UCF-101 model and 76% accuracy on Kinetics dataset. Top-5 accuracy is standing at  92%
 
 PS: Accuracies on these datasets should be taken with a pinch of salt as these are evalutated on trimmed data. We need to test these models on Untrimmed data and calculate mAP as the metric.
 
@@ -116,7 +118,7 @@ PS: Accuracies on these datasets should be taken with a pinch of salt as these a
 - One of the Questions which came to us is "Can you automatically tell us how many unique actions are present in the data?". This is a valid question we thougth of tackling it using the following procedure
 
 - Use a pre-trained model and extract Bottleneck features. (May be train Auto-encoders using video)
-- Use T-sne to reduce the dimensionality
+- Use optinal PCA then T-sne  to reduce the dimensionality
 - Use K-means and find the optimal number of clusters
 
 We used UCF-101 and extracted the Bottleneck features, Our k-means algoirthm has given the optimal number of clusters to be 92 and when we visualized the dataset similar videos grouped together. We are still not confident of this process and training Auto-encoders is becoming difficult with our settings. We will build this stack as we proceed further.
