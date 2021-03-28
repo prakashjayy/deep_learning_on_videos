@@ -1,6 +1,6 @@
 ## A brief discussion on Video Analytics (Rough Draft and need your Inputs)
 
-I and two of my collegues **Sachin Chandra** and **Vikash Challa** have been working on Action recognition for quite some time (2 months). We want to compile our experiences and discuss what we have so far learned in this space. I will be basically discussing the following details
+**This is written in early 2018 and is no longer relavant**
 
 - Business Aspect: Why we need Video Analytics?
 - Datasets: Openly Available datasets and pitfalls surrounding it. Things we need to consider for annotating our own datasets.
@@ -14,8 +14,7 @@ I and two of my collegues **Sachin Chandra** and **Vikash Challa** have been wor
 - Is Unsupervised Learning a thing?
 - Computational cost and other factors to consider when doing Video Analytics
 
-
-When we are given some grant to work on Video Analytics space, We have taken it with a pinch of salt. This is not typical Image classification or recognition problem where we are now seeing state of the results (Densenet 5.1% error rate  and YOLOV2 is able recognize 9000 objects accurately). Google Deepmind paper **Kinetics-i3d** is trained on 4,00,000 annotated videos across 400 classes (Actions) and still was able to achieve 30.4 mAP score (Activity Net challege). We will later see why this is hard to achieve but I have mentioned this much early to set the expectation.
+This is not typical Image classification or recognition problem where we are now seeing state of the results (Densenet 5.1% error rate  and YOLOV2 is able recognize 9000 objects accurately). Google Deepmind paper **Kinetics-i3d** is trained on 4,00,000 annotated videos across 400 classes (Actions) and still was able to achieve 30.4 mAP score (Activity Net challege). We will later see why this is hard to achieve but I have mentioned this much early to set the expectation.
 
 
 ## Business Impact and Why companies need video analytics?
@@ -24,7 +23,7 @@ When we are given some grant to work on Video Analytics space, We have taken it 
     - How comfartable are they using it ? etc
 - A retail space in your city might want to see if there is any suspicious activity inside their zone?
 - Survillence systems monitoring people
-- Extract videos from search.
+- Extract relavent video bites from search.
 
 ## Datasets:
 The following datasets are freely available
@@ -122,7 +121,3 @@ PS: Accuracies on these datasets should be taken with a pinch of salt as these a
 - Use K-means and find the optimal number of clusters
 
 We used UCF-101 and extracted the Bottleneck features, Our k-means algoirthm has given the optimal number of clusters to be 92 and when we visualized the dataset similar videos grouped together. We are still not confident of this process and training Auto-encoders is becoming difficult with our settings. We will build this stack as we proceed further.
-
-End notes:
-----------
-TODO
